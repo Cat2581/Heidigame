@@ -25,7 +25,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font font;
 	ObjectManager Om;
 	Timer frameDraw;
-
+	GameBoard gb;
+	
+	
 	GamePanel() {
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
@@ -36,8 +38,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// if (needImage) {
 		// loadImage("space.png");
 		// }
+		gb = new GameBoard();
 	}
-
 	void startGame() {
 	}
 
@@ -75,25 +77,25 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(font);
 		g.setColor(Color.WHITE);
 		g.drawString("Instructions + Rules:", 0, 80);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("1. You need to use your mouse to", 5, 150);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("click", 30, 180);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("2.", 5, 230);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("3.", 5, 310);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("4.", 5, 390);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("5.", 5, 470);
-		g.setFont(subtitleFont );
+		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("6.", 5, 550);
 		g.setFont(subtitleFont);
@@ -103,15 +105,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.black);
-		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
-		if (gotImage) {
-			// g.drawImage(image, 0, 0, Memory.WIDTH, Memory.HEIGHT, null);
-		} else {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
-		}
-		// Om.draw(g);
+//		g.setColor(Color.black);
+		//g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
+//		if (gotImage) {
+//			 g.drawImage(image, 0, 0, Memory.WIDTH, Memory.HEIGHT, null);
+//		} else {
+//			g.setColor(Color.BLACK);
+//			g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
+//		}
+//		Om.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
@@ -164,12 +166,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-			if (currentState == INSTRUCTIONS) {
+			if (currentState == INSTRUCTIONS || currentState == MENU) {
 				currentState = GAME;
-			}
-			else if (currentState == END) {
+				this.add(gb);
+			} else if (currentState == END) {
 				currentState = MENU;
-			} else {
+			}else {
 				currentState++;
 			}
 		}

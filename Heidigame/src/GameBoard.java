@@ -1,15 +1,23 @@
+import java.awt.Color;
 import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class GameBoard {
+public class GameBoard extends JPanel {
 	JLabel[][] cards = new JLabel[3][3];
 	BufferedImage[] images = new BufferedImage[9];
 	public static BufferedImage image;
-
+	
 	GameBoard() {
-		
+		JPanel tophalf = new JPanel();
+		JPanel bottomhalf = new JPanel();
+		tophalf.setBackground(Color.YELLOW);
+		tophalf.setBackground(Color.CYAN);
+		this.add(tophalf);
+		this.add(bottomhalf);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	void loadImages() {
 		try {
