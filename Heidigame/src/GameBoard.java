@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,10 +19,14 @@ public class GameBoard extends JPanel {
 		this.add(tophalf);
 		this.add(bottomhalf);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		loadImages();
+		cards [0] [0] = new JLabel();
+		cards [0] [0].setIcon(new ImageIcon(images[0]));
+		//  Add image to JLabel
 	}
 	void loadImages() {
 		try {
-			images[0] = ImageIO.read(this.getClass().getResourceAsStream("apple.png"));
+			images[0]= ImageIO.read(this.getClass().getResourceAsStream("apple.png"));
 			images[1]= ImageIO.read(this.getClass().getResourceAsStream("avocado.jpg"));
 			images[2]= ImageIO.read(this.getClass().getResourceAsStream("Banana.jpg"));
 			images[3]= ImageIO.read(this.getClass().getResourceAsStream("broccoli.jpg"));
