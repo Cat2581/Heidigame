@@ -23,23 +23,25 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont;
 	Font subtitleFont;
 	Font font;
+	Font font2;
 	ObjectManager Om;
 	Timer frameDraw;
 	GameBoard gb;
-	
-	
+
 	GamePanel() {
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
-		titleFont = new Font("Arial", Font.BOLD, 80);
+		titleFont = new Font("Arial", Font.BOLD, 75);
 		subtitleFont = new Font("Arial", Font.PLAIN, 30);
 		font = new Font("Arial", Font.BOLD, 48);
+		font2 = new Font("Arial", Font.BOLD, 35);
 		// Om = new ObjectManager(rs);
 		// if (needImage) {
 		// loadImage("space.png");
 		// }
 		gb = new GameBoard();
 	}
+
 	void startGame() {
 	}
 
@@ -62,51 +64,56 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
 		g.setFont(titleFont);
 		g.setColor(Color.WHITE);
-		g.drawString("Memory 101", 10, 200);
-		g.setFont(subtitleFont);
-		g.setColor(Color.YELLOW);
-		g.drawString("Press ENTER to play", 100, 400);
-		g.setFont(subtitleFont);
-		g.setColor(Color.YELLOW);
-		g.drawString("Press SPACE for instructions", 50, 500);
+		g.drawString("Memory 101", 27, 200);
+		g.setFont(font2);
+		g.setColor(Color.PINK);
+		g.drawString("Press ENTER to play", 55, 400);
+		g.setFont(font2);
+		g.setColor(Color.PINK);
+		g.drawString("Press SPACE for instructions", 0, 500);
 	}
 
 	void drawInstructionsState(Graphics g) {
 		g.setColor(Color.MAGENTA);
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
 		g.setFont(font);
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLUE);
 		g.drawString("Instructions + Rules:", 0, 80);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("1. You need to use your mouse to", 5, 150);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
-		g.drawString("click", 30, 180);
+		g.drawString("click", 30, 185);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
-		g.drawString("2.", 5, 230);
+		g.drawString("2. Click on the button that matches", 5, 230);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
-		g.drawString("3.", 5, 310);
+		g.drawString("the image that pops up", 30, 270);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
-		g.drawString("4.", 5, 390);
+		g.drawString("3. Try and see how many times", 5, 310);
+		g.setFont(subtitleFont);
+		g.setColor(Color.black);
+		g.drawString("you can get it right!", 30, 350);
+		g.setFont(subtitleFont);
+		g.setColor(Color.black);
+		g.drawString("4. ", 5, 390);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("5.", 5, 470);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("6.", 5, 550);
-		g.setFont(subtitleFont);
-		g.setColor(Color.WHITE);
-		g.drawString("Now press ENTER to play!", 65, 630);
-		g.setFont(font);
+		g.setFont(font2);
+		g.setColor(Color.BLUE);
+		g.drawString("Now press ENTER to play!", 13, 630);
 	}
 
 	void drawGameState(Graphics g) {
 //		g.setColor(Color.black);
-		//g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
+		// g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
 //		if (gotImage) {
 //			 g.drawImage(image, 0, 0, Memory.WIDTH, Memory.HEIGHT, null);
 //		} else {
@@ -121,10 +128,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
 		g.setFont(titleFont);
 		g.setColor(Color.BLACK);
-		g.drawString("GAME OVER", 3, 300);
-		g.setFont(subtitleFont);
+		g.drawString("GAME OVER", 10, 300);
+		g.setFont(font2);
 		g.setColor(Color.WHITE);
-		g.drawString("Press ENTER to play again", 65, 350);
+		g.drawString("Press ENTER to play again", 17, 390);
 
 	}
 
@@ -171,7 +178,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				this.add(gb);
 			} else if (currentState == END) {
 				currentState = MENU;
-			}else {
+			} else {
 				currentState++;
 			}
 		}
