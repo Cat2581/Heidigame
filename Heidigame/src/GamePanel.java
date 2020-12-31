@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("the image that pops up", 30, 270);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
-		g.drawString("3. Try and see how many times", 5, 310);
+		g.drawString("3. Try and see how many", 5, 310);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("you can get it right!", 30, 350);
