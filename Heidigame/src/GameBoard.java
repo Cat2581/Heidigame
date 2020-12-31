@@ -9,20 +9,22 @@ import javax.swing.JPanel;
 public class GameBoard extends JPanel {
 	JLabel[][] cards = new JLabel[3][3];
 	BufferedImage[] images = new BufferedImage[9];
-	public static BufferedImage image;
+	//public static BufferedImage image;
 
 	GameBoard() {
 		JPanel tophalf = new JPanel();
 		JPanel bottomhalf = new JPanel();
 		tophalf.setBackground(Color.YELLOW);
-		tophalf.setBackground(Color.CYAN);
+		bottomhalf.setBackground(Color.CYAN);
 		this.add(tophalf);
 		this.add(bottomhalf);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		loadImages();
-		// cards [0] [0] = new JLabel();
-		// cards [0] [0].setIcon(new ImageIcon(images[0]));
+		System.out.println("action`");
+		cards [0] [0] = new JLabel();
+		cards [0] [0].setIcon(new ImageIcon(images[0]));
 		// Add image to JLabel
+		bottomhalf.add(cards [0] [0]);
 	}
 
 	void loadImages() {

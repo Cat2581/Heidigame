@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// if (needImage) {
 		// loadImage("space.png");
 		// }
-		gb = new GameBoard();
+		//gb = new GameBoard();
 	}
 
 	void startGame() {
@@ -96,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("3. Try and see how many", 5, 310);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
-		g.drawString("you can get it right!", 30, 350);
+		g.drawString("you can get right!", 30, 350);
 		g.setFont(subtitleFont);
 		g.setColor(Color.black);
 		g.drawString("4. ", 5, 390);
@@ -112,8 +113,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-//		g.setColor(Color.black);
-		// g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
+
+		g.setColor(Color.black);
+		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
+		this.add(gb);
 //		if (gotImage) {
 //			 g.drawImage(image, 0, 0, Memory.WIDTH, Memory.HEIGHT, null);
 //		} else {
@@ -121,6 +124,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 //			g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
 //		}
 //		Om.draw(g);
+		System.out.println("Move");
 	}
 
 	void drawEndState(Graphics g) {
@@ -175,7 +179,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == INSTRUCTIONS || currentState == MENU) {
 				currentState = GAME;
-				this.add(gb);
 			} else if (currentState == END) {
 				currentState = MENU;
 			} else {
