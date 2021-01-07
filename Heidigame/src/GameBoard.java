@@ -1,5 +1,5 @@
 import java.awt.Color;
-import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImage; 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -20,11 +20,33 @@ public class GameBoard extends JPanel {
 		this.add(bottomhalf);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		loadImages();
-		System.out.println("action`");
 		cards [0] [0] = new JLabel();
 		cards [0] [0].setIcon(new ImageIcon(images[0]));
-		// Add image to JLabel
 		bottomhalf.add(cards [0] [0]);
+		cards [0] [1] = new JLabel();
+		cards [0] [1].setIcon(new ImageIcon(images[1]));
+		bottomhalf.add(cards [0] [1]);
+		cards [0] [2] = new JLabel();
+		cards [0] [2].setIcon(new ImageIcon(images[2]));
+		bottomhalf.add(cards [0] [2]);
+		cards [1][0] = new JLabel();
+		cards [1] [0].setIcon(new ImageIcon(images[3]));
+		bottomhalf.add(cards [1] [0]);
+		cards [1][1] = new JLabel();
+		cards [1] [1].setIcon(new ImageIcon(images[4]));
+		bottomhalf.add(cards [1] [1]);
+		cards [1][2] = new JLabel();
+		cards [1] [2].setIcon(new ImageIcon(images[5]));
+		bottomhalf.add(cards [1] [2]);
+		cards [2][0] = new JLabel();
+		cards [2] [0].setIcon(new ImageIcon(images[6]));
+		bottomhalf.add(cards [2] [0]);
+		cards [2][1] = new JLabel();
+		cards [2] [1].setIcon(new ImageIcon(images[7]));
+		bottomhalf.add(cards [2] [1]);
+		cards [2][2] = new JLabel();
+		cards [2] [2].setIcon(new ImageIcon(images[8]));
+		bottomhalf.add(cards [2] [2]);
 	}
 
 	void loadImages() {
