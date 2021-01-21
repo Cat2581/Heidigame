@@ -20,14 +20,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int INSTRUCTIONS = 3;
 	final int GAME = 1;
 	final int END = 2;
-	int currentState = MENU;
+	int currentState = GAME;
 	Font titleFont;
 	Font subtitleFont;
 	Font font;
 	Font font2;
-	ObjectManager Om;
 	Timer frameDraw;
 	GameBoard gb;
+	Fruit blocker;
 
 	GamePanel() {
 		frameDraw = new Timer(1000 / 60, this);
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		subtitleFont = new Font("Arial", Font.PLAIN, 30);
 		font = new Font("Arial", Font.BOLD, 48);
 		font2 = new Font("Arial", Font.BOLD, 35);
-		// Om = new ObjectManager(rs);
+	    //Fruit = new Fruit (30, 30, 150, 150);
 		// if (needImage) {
 		// loadImage("space.png");
 		// }
@@ -116,7 +116,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
-		this.add(gb);
+		//this.add(gb);
 //		if (gotImage) {
 //			 g.drawImage(image, 0, 0, Memory.WIDTH, Memory.HEIGHT, null);
 //		} else {
@@ -125,6 +125,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 //		}
 //		Om.draw(g);
 		System.out.println("Move");
+		blocker.draw(g);
 	}
 
 	void drawEndState(Graphics g) {

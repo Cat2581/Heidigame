@@ -19,7 +19,7 @@ public class Memory {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		//frame.addKeyListener(gpanel);
+		frame.addMouseListener(gboard);
 	}
 
 	public static void main(String[] args) {
