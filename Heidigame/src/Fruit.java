@@ -17,11 +17,10 @@ public class Fruit extends GameObject {
 		if (needImage) {
 			loadImage(fruit);
 		}
+
 	}
 
 	void draw(Graphics g) {
-		g.setColor(Color.white);
-		g.fillRect(x, y, width, height);
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
 		} else {
