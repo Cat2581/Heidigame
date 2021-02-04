@@ -8,6 +8,7 @@ public class Fruit extends GameObject {
 	public BufferedImage image;
 	public boolean needImage = true;
 	public boolean gotImage = false;
+	public boolean hidden = false;
 	String fruit;
 
 	Fruit(int x, int y, int width, int height, String fruit) {
@@ -26,6 +27,11 @@ public class Fruit extends GameObject {
 		} else {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
+		}
+		if (hidden == true) {
+			g.setColor(Color.WHITE);
+			g.fillRect(x, y, width, height);
+			System.out.println("run");
 		}
 	}
 

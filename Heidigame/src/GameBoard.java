@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -21,8 +23,8 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener {
 	JLabel[][] cards = new JLabel[3][3];
 	BufferedImage[] images = new BufferedImage[9];
 	Fruit[][] fruit = new Fruit[3][3];
-	String[][] names = { { "apple.png", "avocado.png", "Banana.png" }, { "broccoli.png", "cucumber.png", "Mango.png" },
-			{ "orange.png", "Papaya.png", "Watermelon.png" } };
+	String[][] names = { { "apple.png", "avocado.png", "Banana.png" }, { "broccoli.png", "cucumber.png", "Mango.png" },{ "orange.png", "Papaya.png", "Watermelon.png" } };
+	ArrayList <String> shuffle; 
 	JPanel bottomhalf = new JPanel();
 	Timer frameDraw;
 	Timer blockertimer;
@@ -36,18 +38,25 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener {
 		random = new Random();
 		starfruit = new Fruit(160 ,50, 150, 150, names[random.nextInt(names.length)][random.nextInt(names.length)] );
 		blockertimer = new Timer(5000,this);
+		blockertimer.start();
 		JPanel tophalf = new JPanel();
 		tophalf.setBackground(Color.YELLOW);
 		bottomhalf.setBackground(Color.CYAN);
 		// this.add(tophalf);
 		// this.add(bottomhalf);
+		shuffle =  new ArrayList <String> ();
+		for (int i = 0; i < cards.length; i++) {
+			for (int j = 0; j < cards.length; j++) {
+				shuffle.add((names[i][j]));
+			}
+		}
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		loadImages();
 		for (int i = 0; i < fruit.length; i++) {
 			for (int j = 0; j < fruit.length; j++) {
 				fruit[i][j] = new Fruit(10 + 160 * i, 250 + 160 * j, 140, 140, names[i][j]);
 			}
 		}
+		starfruit.hidden = true;
 //		cards[0][0] = new JLabel();
 //		cards[0][0].setIcon(new ImageIcon(images[0]));
 //		bottomhalf.add(cards[0][0]);
@@ -77,22 +86,6 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener {
 //		bottomhalf.add(cards[2][2]);
 	}
 
-	void loadImages() {
-		try {
-			images[0] = ImageIO.read(this.getClass().getResourceAsStream("apple.png"));
-			images[1] = ImageIO.read(this.getClass().getResourceAsStream("avocado.png"));
-			images[2] = ImageIO.read(this.getClass().getResourceAsStream("Banana.png"));
-			images[3] = ImageIO.read(this.getClass().getResourceAsStream("broccoli.png"));
-			images[4] = ImageIO.read(this.getClass().getResourceAsStream("cucumber.png"));
-			images[5] = ImageIO.read(this.getClass().getResourceAsStream("Mango.png"));
-			images[6] = ImageIO.read(this.getClass().getResourceAsStream("orange.png"));
-			images[7] = ImageIO.read(this.getClass().getResourceAsStream("Papaya.png"));
-			images[8] = ImageIO.read(this.getClass().getResourceAsStream("Watermelon.png"));
-		} catch (Exception e) {
-
-		}
-	}
-
 	@Override
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.BLACK);
@@ -120,7 +113,6 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener {
 		// TODO Auto-generated method stub
 		removeImage();
 		repaint();
-		System.out.println("run");
 	}
 
 	@Override
@@ -146,6 +138,15 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getSource() == frameDraw) {
 			repaint();
+		}
+		if (blockertimer == e.getSource()) {
+			blockertimer.stop();
+			for (int i = 0; i < fruit.length; i++) {
+				for (int j = 0; j < fruit.length; j++) {
+					fruit[i][j].hidden = true;
+				}
+			}
+		starfruit.hidden = false;	
 		}
 	}
 
