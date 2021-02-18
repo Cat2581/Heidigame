@@ -13,7 +13,6 @@ public class Fruit extends GameObject {
 
 	Fruit(int x, int y, int width, int height, String fruit) {
 		super(x, y, width, height);
-		// TODO Auto-generated constructor stub
 		this.fruit = fruit;
 		if (needImage) {
 			loadImage(fruit);

@@ -47,8 +47,6 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		JPanel tophalf = new JPanel();
 		tophalf.setBackground(Color.YELLOW);
 		bottomhalf.setBackground(Color.CYAN);
-		// this.add(tophalf);
-		// this.add(bottomhalf);
 		shuffle = new ArrayList<String>();
 		for (int i = 0; i < cards.length; i++) {
 			for (int j = 0; j < cards.length; j++) {
