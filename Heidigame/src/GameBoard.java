@@ -1,5 +1,7 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -33,6 +35,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 	Fruit starfruit;
 	CustomCursor cursor;
 	Random random;
+	Font subtitleFont;
 	int score = 0;
 	// public static BufferedImage image;
 
@@ -44,6 +47,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		cursor = new CustomCursor(0, 0, 25, 25);
 		blockertimer = new Timer(5000, this);
 		blockertimer.start();
+		subtitleFont = new Font("Arial", Font.PLAIN, 30);
 		JPanel tophalf = new JPanel();
 		tophalf.setBackground(Color.YELLOW);
 		bottomhalf.setBackground(Color.CYAN);
@@ -83,7 +87,18 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		for (int i = 0; i < fruit.length; i++) {
+			for (int j = 0; j < fruit.length; j++) {
+				Rectangle fruitbox = fruit[i][j].collisionbox;
+				Rectangle cursorbox = cursor.collisionbox;
+				if (fruitbox.intersects(cursorbox)) {
+					if (fruit[i][j].fruit.equals(starfruit.fruit)) {
+						System.out.println("you got it right");
+						score+=1;
+					}
+				}
+			}
+		}
 	}
 
 	@Override
