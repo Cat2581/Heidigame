@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -47,7 +48,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		cursor = new CustomCursor(0, 0, 25, 25);
 		blockertimer = new Timer(5000, this);
 		blockertimer.start();
-		subtitleFont = new Font("Arial", Font.PLAIN, 30);
+		subtitleFont = new Font("Arial", Font.ROMAN_BASELINE, 35);
 		JPanel tophalf = new JPanel();
 		tophalf.setBackground(Color.YELLOW);
 		bottomhalf.setBackground(Color.CYAN);
@@ -67,6 +68,25 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		starfruit.hidden = true;
 	}
 
+	public void randomizing () {
+		starfruit = new Fruit(160, 50, 150, 150, names[random.nextInt(names.length)][random.nextInt(names.length)]); 
+		blockertimer = new Timer(5000, this);
+		blockertimer.start();
+		shuffle = new ArrayList<String>();
+		for (int i = 0; i < cards.length; i++) {
+			for (int j = 0; j < cards.length; j++) {
+				shuffle.add((names[i][j]));
+			}
+		}
+		for (int i = 0; i < fruit.length; i++) {
+			for (int j = 0; j < fruit.length; j++) {
+				fruit[i][j] = new Fruit(10 + 160 * i, 250 + 160 * j, 140, 140,
+						shuffle.remove(random.nextInt(shuffle.size())));
+			}
+		}
+		starfruit.hidden = true;
+	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.BLACK);
@@ -78,6 +98,9 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		}
 		starfruit.draw(g);
 		cursor.draw(g);
+		g.setFont(subtitleFont);
+		g.setColor(Color.pink);
+		g.drawString("Your score = " + score, 10, 35);
 	}
 
 	void removeImage() {
@@ -93,9 +116,25 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 				Rectangle cursorbox = cursor.collisionbox;
 				if (fruitbox.intersects(cursorbox)) {
 					if (fruit[i][j].fruit.equals(starfruit.fruit)) {
-						System.out.println("you got it right");
-						score+=1;
+						score += 1;
+						fruit[i][j].hidden = false;
+					} else {
+						JOptionPane.showMessageDialog(null, "You got it wrong click \"ok\" to know where it was");
+						findCorrectFruit();
+
 					}
+				}
+			}
+		}
+		JOptionPane.showMessageDialog(null, " Now press \"ok\" to start new round");
+		randomizing();
+	}
+
+	public void findCorrectFruit() {
+		for (int i = 0; i < fruit.length; i++) {
+			for (int j = 0; j < fruit.length; j++) {
+				if (fruit[i][j].fruit.equals(starfruit.fruit)) {
+					fruit[i][j].hidden = false;
 				}
 			}
 		}
@@ -106,7 +145,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		// TODO Auto-generated method stub
 		removeImage();
 		repaint();
-	}
+	};
 
 	@Override
 	public void mouseReleased(MouseEvent e) {

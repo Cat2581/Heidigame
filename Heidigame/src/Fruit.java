@@ -30,7 +30,6 @@ public class Fruit extends GameObject {
 		if (hidden == true) {
 			g.setColor(Color.WHITE);
 			g.fillRect(x, y, width, height);
-			System.out.println("run");
 		}
 	}
 
