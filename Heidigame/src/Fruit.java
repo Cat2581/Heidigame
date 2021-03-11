@@ -9,6 +9,8 @@ public class Fruit extends GameObject {
 	public boolean needImage = true;
 	public boolean gotImage = false;
 	public boolean hidden = false;
+	public boolean red = false;
+	public boolean green = false;
 	String fruit;
 
 	Fruit(int x, int y, int width, int height, String fruit) {
@@ -21,6 +23,14 @@ public class Fruit extends GameObject {
 	}
 
 	void draw(Graphics g) {
+		if (green) {
+			g.setColor(new Color(0, 250, 0, 45));
+			g.fillRect(x, y, width, height);
+		}
+		if (red) {
+			g.setColor (new Color(250, 0, 0, 45) );
+			g.fillRect(x, y, width, height);
+		}
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
 		} else {

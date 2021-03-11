@@ -38,9 +38,14 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 	Random random;
 	Font subtitleFont;
 	int score = 0;
+	final int MENU = 0;
+    final int GAME = 1;
+    final int END = 2;
+    int currentState = MENU;
 	// public static BufferedImage image;
 
 	GameBoard() {
+		//currentState = new currentState; 
 		frameDraw = new Timer(1000 / 60, this);
 		frameDraw.start();
 		random = new Random();
@@ -117,16 +122,17 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 				if (fruitbox.intersects(cursorbox)) {
 					if (fruit[i][j].fruit.equals(starfruit.fruit)) {
 						score += 1;
+						fruit [i][j].green = true;
 						fruit[i][j].hidden = false;
 					} else {
 						JOptionPane.showMessageDialog(null, "You got it wrong click \"ok\" to know where it was");
 						findCorrectFruit();
-
+						fruit [i][j].red = true;
 					}
 				}
 			}
 		}
-		JOptionPane.showMessageDialog(null, " Now press \"ok\" to start new round");
+		JOptionPane.showMessageDialog(null, "Nice! Now press \"ok\" to start new round");
 		randomizing();
 	}
 
