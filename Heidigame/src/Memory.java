@@ -23,6 +23,7 @@ public class Memory {
 		frame.setVisible(true);
 		frame.addMouseListener(gboard);
 		frame.addMouseMotionListener(gboard);
+		frame.addKeyListener(gboard);
 
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 
