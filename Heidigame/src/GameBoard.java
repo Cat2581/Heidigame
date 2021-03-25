@@ -40,8 +40,9 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 	Font subtitleFont;
 	int score = 0;
 	final int MENU = 0;
-	final int GAME = 1;
-	final int END = 2;
+	final int INSTRUCTIONS = 1;
+	final int GAME = 2;
+	final int END = 3;
 	int currentState = MENU;
 	// public static BufferedImage image;
 
@@ -92,6 +93,53 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.drawString("press SPACE for instructions", 15, 370);
 	}
 
+	void drawInstructionsState(Graphics g) {
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
+		g.setFont(titleFont);
+		g.setColor(Color.PINK);
+		g.drawString("Instructions", 55, 70);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("-The game starts as soon as", 15, 130);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("you press enter so be ready ", 10, 170);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("-You need to memorize all the", 15, 230);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("fruits you have 5 seconds to do", 10, 270);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("so then you will need to click", 10, 310);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("on the white box that has the", 10, 350);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("fruit that matches the fruit at", 10, 390);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("the top ", 10, 430);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("-Your points will be kept at the top left corner", 15, 490);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("the top left corner", 10, 530);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("-Anytime you want to end the", 15, 590);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("game you press ENTER and it will take you to the end state", 15, 630);
+		g.setFont(subtitleFont);
+		g.setColor(Color.DARK_GRAY);
+		g.drawString("it will take you to the end state!", 15, 670);
+	}
+	
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
@@ -101,7 +149,6 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 			}
 		}
 		starfruit.draw(g);
-		cursor.draw(g);
 		g.setFont(subtitleFont);
 		g.setColor(Color.pink);
 		g.drawString("Your score = " + score, 10, 35);
@@ -138,11 +185,14 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 	public void paintComponent(Graphics g) {
 		if (currentState == MENU) {
 			drawMenuState(g);
-		} else if (currentState == GAME) {
+		} else if (currentState == INSTRUCTIONS) {
+			drawInstructionsState(g);
+		}  else if (currentState == GAME) {
 			drawGameState(g);
 		} else if (currentState == END) {
 			drawEndState(g);
 		}
+		cursor.draw(g);
 	}
 	void removeImage() {
 		bottomhalf.removeAll();
@@ -253,7 +303,10 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		    } else {
 		        currentState++;
 		    }
-		} 
+		}
+	    if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+	    	currentState = INSTRUCTIONS;
+	    }
 	}
 
 	@Override
