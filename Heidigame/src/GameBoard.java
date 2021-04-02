@@ -125,7 +125,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.drawString("the top ", 10, 430);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("-Your points will be kept at the top left corner", 15, 490);
+		g.drawString("-Your points will be kept at", 15, 490);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("the top left corner", 10, 530);
@@ -139,7 +139,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("it will take you to the end state!", 15, 670);
 	}
-	
+
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
@@ -159,7 +159,13 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.fillRect(0, 0, Memory.WIDTH, Memory.HEIGHT);
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
-		//g.drawString("text", x, y);
+		g.drawString("END GAME", 60, 100);
+		g.setFont(subtitleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("Your score was " + score + " good Job!", 20, 200);
+		g.setFont(subtitleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("Press ENTER to start again", 20, 300);
 	}
 
 	public void randomizing() {
@@ -187,13 +193,14 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 			drawMenuState(g);
 		} else if (currentState == INSTRUCTIONS) {
 			drawInstructionsState(g);
-		}  else if (currentState == GAME) {
+		} else if (currentState == GAME) {
 			drawGameState(g);
 		} else if (currentState == END) {
 			drawEndState(g);
 		}
 		cursor.draw(g);
 	}
+
 	void removeImage() {
 		bottomhalf.removeAll();
 	}
@@ -206,19 +213,22 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 				Rectangle fruitbox = fruit[i][j].collisionbox;
 				Rectangle cursorbox = cursor.collisionbox;
 				if (fruitbox.intersects(cursorbox)) {
-					if (fruit[i][j].fruit.equals(starfruit.fruit)) {
-						score += 1;
-						fruit[i][j].green = true;
-						fruit[i][j].hidden = false;
-					} else {
-						JOptionPane.showMessageDialog(null, "You got it wrong click \"ok\" to know where it was");
-						findCorrectFruit();
-						fruit[i][j].red = true;
+					if (currentState == GAME) {
+						if (fruit[i][j].fruit.equals(starfruit.fruit)) {
+							score += 1;
+							fruit[i][j].green = true;
+							fruit[i][j].hidden = false;
+							JOptionPane.showMessageDialog(null, "Nice! Now press \"ok\" to start new round");
+						} else {
+							findCorrectFruit();
+							fruit[i][j].red = true;
+							fruit[i][j].hidden = false;
+							JOptionPane.showMessageDialog(null, "You got it wrong :( click \"ok\" to go the next round");
+						}
 					}
 				}
 			}
 		}
-		JOptionPane.showMessageDialog(null, "Nice! Now press \"ok\" to start new round");
 		randomizing();
 	}
 
@@ -291,28 +301,28 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-		    if (currentState == END) {
-		        currentState = MENU;
-		    } else {
-		        currentState++;
-		    }
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (currentState == END) {
+				currentState = MENU;
+			} else {
+				currentState++;
+			}
 		}
-	    if (e.getKeyCode()==KeyEvent.VK_SPACE) {
-	    	currentState = INSTRUCTIONS;
-	    }
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			currentState = INSTRUCTIONS;
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
