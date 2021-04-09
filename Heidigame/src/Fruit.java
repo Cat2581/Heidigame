@@ -28,7 +28,7 @@ public class Fruit extends GameObject {
 			g.fillRect(x, y, width, height);
 		}
 		if (red) {
-			g.setColor (new Color(250, 0, 0, 45) );
+			g.setColor(new Color(250, 0, 0, 45));
 			g.fillRect(x, y, width, height);
 		}
 		if (gotImage) {

@@ -104,25 +104,25 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.drawString("-The game starts as soon as", 15, 130);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("you press enter so be ready ", 10, 170);
+		g.drawString("you press ENTER so be ready! ", 10, 170);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("-You need to memorize all the", 15, 230);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("fruits you have 5 seconds to do", 10, 270);
+		g.drawString("fruits, you have 5 seconds to", 10, 270);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("so then you will need to click", 10, 310);
+		g.drawString("do so, then you will need to", 10, 310);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("on the white box that has the", 10, 350);
+		g.drawString("click on the white box that has", 10, 350);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("fruit that matches the fruit at", 10, 390);
+		g.drawString("the fruit that matches the fruit", 10, 390);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("the top ", 10, 430);
+		g.drawString("at the top ", 10, 430);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("-Your points will be kept at", 15, 490);
@@ -134,7 +134,7 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.drawString("-Anytime you want to end the", 15, 590);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
-		g.drawString("game you press ENTER and it will take you to the end state", 15, 630);
+		g.drawString("game you press ENTER and", 15, 630);
 		g.setFont(subtitleFont);
 		g.setColor(Color.DARK_GRAY);
 		g.drawString("it will take you to the end state!", 15, 670);
@@ -162,10 +162,10 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 		g.drawString("END GAME", 60, 100);
 		g.setFont(subtitleFont);
 		g.setColor(Color.BLACK);
-		g.drawString("Your score was " + score + " good Job!", 20, 200);
+		g.drawString("Your score was " + score, 100, 200);
 		g.setFont(subtitleFont);
 		g.setColor(Color.BLACK);
-		g.drawString("Press ENTER to start again", 20, 300);
+		g.drawString("Press ENTER to start again!", 20, 300);
 	}
 
 	public void randomizing() {
@@ -223,7 +223,8 @@ public class GameBoard extends JPanel implements MouseListener, ActionListener, 
 							findCorrectFruit();
 							fruit[i][j].red = true;
 							fruit[i][j].hidden = false;
-							JOptionPane.showMessageDialog(null, "You got it wrong :( click \"ok\" to go the next round");
+							JOptionPane.showMessageDialog(null,
+									"You got it wrong :( click \"ok\" to go the next round");
 						}
 					}
 				}
